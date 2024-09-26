@@ -47,20 +47,25 @@
 import DialogComponent from '@/components/dashboard/DialogComponent.vue';
 import { useCategoryStore } from '@/stores/CategoryStore';
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
 const CategoryStore = useCategoryStore()
-const { category, form, dialog } = storeToRefs(CategoryStore)
+const { category, form, dialog, categories } = storeToRefs(CategoryStore)
 //action
-const { onSubmitData } = CategoryStore
+const { onSubmitData, readCategory } = CategoryStore
+
+onMounted(() => {
+    readCategory()
+})
 
 //state
 
-const categories = [
-    { id: "1", name: "Politik" },
-    { id: "1", name: "Kuliner" },
-    { id: "1", name: "IT" },
-    { id: "1", name: "Sejarah" },
-]
+// const categories = [
+// { id: "1", name: "Politik" },
+// { id: "1", name: "Kuliner" },
+// { id: "1", name: "IT" },
+// { id: "1", name: "Sejarah" },
+// ]
 
 
 // validasi
