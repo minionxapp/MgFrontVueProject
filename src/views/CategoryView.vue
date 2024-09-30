@@ -1,23 +1,29 @@
 <template>
     <h1>Halaman Category</h1>
     <div class="d-flex justify-end my-6">
-        <v-btn color="primary" icon="mdi-plus" size="large" @click="dialog = true" />
+        <v-btn color="primary" icon="mdi-plus" size="large" @click="tambahData()" />
     </div>
     <dialog-component v-model="dialog">
         <template #title>
-            add category
+            <div>
+                {{ category.isUpdate ? "Update Category" : "Add Category" }}
+            </div>
         </template>
         <template #content>
             <v-form @submit.prevent="onSubmitData" v-model="form">
                 <v-text-field class="mb-1" :rules="nameRules" v-model="category.name" label="Name"></v-text-field>
-                <!-- {{ category.name }} -->
                 <v-textarea class="mb-1" :rules="descriptionRules" v-model="category.description"
                     label="Description"></v-textarea>
-                <!-- {{ category.description }} -->
-                <v-btn :disabled="!form" block color="success" variant="elevated" size="large"
-                    type="submit">tambah</v-btn>
+                <v-btn :disabled="!form" block color="success" variant="elevated" size="large" type="submit">
+                    {{ category.isUpdate ? "Update" : "Tambah" }}
+                </v-btn>
             </v-form>
         </template>
+    </dialog-component>
+
+    <dialog-component v-model="dialogDetail">
+        <template #title>{{ category.name }}</template>
+        <template #content>{{ category.description }}</template>
     </dialog-component>
 
     <!-- Table -->
@@ -33,8 +39,10 @@
             <tr v-for="(item, index) in categories" :key="item.id">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
-                <td class="text-center"> <v-btn size="x-small" color="info" icon="mdi-information"></v-btn>
-                    <v-btn size="x-small" color="primary" icon="mdi-pencil" class="mx-3"></v-btn>
+                <td class="text-center">
+                    <v-btn size="x-small" color="info" icon="mdi-information" @click="getdata(item)"></v-btn>
+                    <v-btn size="x-small" color="primary" icon="mdi-pencil" class="mx-3"
+                        @click="editData(item)"></v-btn>
                     <v-btn size="x-small" color="error" icon="mdi-trash-can"></v-btn>
                 </td>
             </tr>
@@ -50,9 +58,10 @@ import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
 const CategoryStore = useCategoryStore()
-const { category, form, dialog, categories } = storeToRefs(CategoryStore)
+// state
+const { category, form, dialog, categories, dialogDetail } = storeToRefs(CategoryStore)
 //action
-const { onSubmitData, readCategory } = CategoryStore
+const { onSubmitData, readCategory, getdata, tambahData, editData } = CategoryStore
 
 onMounted(() => {
     readCategory()
