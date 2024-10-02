@@ -26,6 +26,22 @@
         <template #content>{{ category.description }}</template>
     </dialog-component>
 
+    <dialog-component v-model="dialogDelete">
+        <template #title>Delete Category</template>
+        <template #content>
+            <div class="text-h6 text-error pa-3">Yakin ingin hapus {{ category.name }}</div>
+            <v-row>
+                <v-col>
+                    <v-btn color="primary" block @click="destroyData(category.id)">Ya</v-btn>
+                </v-col>
+                <v-col>
+                    <v-btn color="error" block @click="dialogDelete = false">Tidak</v-btn>
+                </v-col>
+            </v-row>
+        </template>
+
+    </dialog-component>
+
     <!-- Table -->
     <v-table>
         <thead>
@@ -43,7 +59,7 @@
                     <v-btn size="x-small" color="info" icon="mdi-information" @click="getdata(item)"></v-btn>
                     <v-btn size="x-small" color="primary" icon="mdi-pencil" class="mx-3"
                         @click="editData(item)"></v-btn>
-                    <v-btn size="x-small" color="error" icon="mdi-trash-can"></v-btn>
+                    <v-btn size="x-small" color="error" icon="mdi-trash-can" @click="deleteData(item)"></v-btn>
                 </td>
             </tr>
         </tbody>
@@ -59,9 +75,9 @@ import { onMounted } from 'vue';
 
 const CategoryStore = useCategoryStore()
 // state
-const { category, form, dialog, categories, dialogDetail } = storeToRefs(CategoryStore)
+const { category, form, dialog, categories, dialogDetail, dialogDelete } = storeToRefs(CategoryStore)
 //action
-const { onSubmitData, readCategory, getdata, tambahData, editData } = CategoryStore
+const { onSubmitData, readCategory, getdata, tambahData, editData, deleteData, destroyData } = CategoryStore
 
 onMounted(() => {
     readCategory()

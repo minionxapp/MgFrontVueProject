@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
-import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '@/config/firebase'
 
 export const useCategoryStore = defineStore('Category', () => {
@@ -10,6 +10,7 @@ export const useCategoryStore = defineStore('Category', () => {
   const dialogDetail = ref(false)
   const form = ref(false)
   const categories = ref(null)
+  const dialogDelete = ref(false)
 
   const category = reactive({
     id: '',
@@ -68,11 +69,31 @@ export const useCategoryStore = defineStore('Category', () => {
 
   const editData = (item) => {
     dialog.value = true
+    // category.id = item.id
+    // category.name = item.name
+    // category.description = item.description
+    category.isUpdate = true
+    getIdData(item)
+  }
+  const getIdData = (item) => {
     category.id = item.id
     category.name = item.name
     category.description = item.description
-    category.isUpdate = true
   }
+
+  const deleteData = (item) => {
+    dialogDelete.value = true
+    getIdData(item)
+  }
+
+  const destroyData = async (itemId) => {
+    await deleteDoc(doc(CategoryCollection, itemId))
+    alert('delete Berhasil')
+    dialogDelete.value = false
+    clearInput()
+    readCategory()
+  }
+
   return {
     dialog,
     form,
@@ -83,6 +104,9 @@ export const useCategoryStore = defineStore('Category', () => {
     getdata,
     dialogDetail,
     tambahData,
-    editData
+    editData,
+    deleteData,
+    dialogDelete,
+    destroyData
   }
 })
