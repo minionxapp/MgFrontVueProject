@@ -69,9 +69,6 @@ export const useCategoryStore = defineStore('Category', () => {
 
   const editData = (item) => {
     dialog.value = true
-    // category.id = item.id
-    // category.name = item.name
-    // category.description = item.description
     category.isUpdate = true
     getIdData(item)
   }

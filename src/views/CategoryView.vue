@@ -76,22 +76,13 @@ import { onMounted } from 'vue';
 const CategoryStore = useCategoryStore()
 // state
 const { category, form, dialog, categories, dialogDetail, dialogDelete } = storeToRefs(CategoryStore)
+
 //action
 const { onSubmitData, readCategory, getdata, tambahData, editData, deleteData, destroyData } = CategoryStore
 
 onMounted(() => {
     readCategory()
 })
-
-//state
-
-// const categories = [
-// { id: "1", name: "Politik" },
-// { id: "1", name: "Kuliner" },
-// { id: "1", name: "IT" },
-// { id: "1", name: "Sejarah" },
-// ]
-
 
 // validasi
 const nameRules = [
