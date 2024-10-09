@@ -5,7 +5,7 @@
         </div>
 
         <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-            <v-form v-model="formInput" @submit.prevent="authUser">
+            <v-form v-model="formInput" @submit.prevent="isLogin ? authUser(true) : authUser()">
                 <div v-if="!isLogin">
                     <div class="text-subtitle-1 text-medium-emphasis">Name</div>
 
@@ -82,10 +82,6 @@ defineProps({
         default: false
     }
 })
-// export default {
-//   data: () => ({
-//     visible: false,
-//   }),
-// }
+
 const visible = ref(false)
 </script>

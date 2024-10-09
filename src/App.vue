@@ -5,9 +5,18 @@
 
 
 <script setup>
-import { provide } from 'vue';
+import { onMounted } from 'vue';
+import { useAuthStore } from './stores/AuthStore';
 import { RouterView } from 'vue-router';
 
-provide('username', 'Mugiarto')
+const auth = useAuthStore()
+
+
+onMounted(() => {
+  auth.userHandler()
+})
+// import { provide } from 'vue';
+
+// provide('username', 'Mugiarto')
 
 </script>

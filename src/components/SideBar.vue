@@ -11,7 +11,7 @@ import ListSidebar from './ListSidebar.vue';
 
 const drawer = ref(false)
 const items = ref([
-    { text: 'Dashboar', icon: 'mdi-view-dashboard', pathName: 'Home' },
+    { text: 'Dashboar', icon: 'mdi-view-dashboard', pathName: 'Dashboard' },
     { text: 'Category', icon: 'mdi-view-list', pathName: 'Category' },
     { text: 'News', icon: 'mdi-newspaper-variant-outline', pathName: 'News' },
     { text: 'Profile', icon: 'mdi-account', pathName: 'Profile' },

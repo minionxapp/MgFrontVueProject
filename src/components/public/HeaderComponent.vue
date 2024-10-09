@@ -16,7 +16,7 @@
 
 <script setup>
 const menuItems = [
-    { title: 'Dashboard', icon: 'mdi-mdi-account-plus', pathName: 'Home' },
+    { title: 'Dashboard', icon: 'mdi-mdi-account-plus', pathName: 'Dashboard' },
     { title: 'Category', icon: 'mdi-newspaper', pathName: 'CategoryPublic' },
     { title: 'Login', icon: 'mdi-login', pathName: 'Login' },
     { title: 'Register', icon: 'mdi-mdi-account-plus', pathName: 'Register' }

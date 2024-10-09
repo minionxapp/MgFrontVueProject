@@ -1,35 +1,22 @@
 <template>
-    <h1>Halaman Dashboard</h1>
-    <div v-for="user in usersData.userData" :key="user.name">
-        <p>name : {{ user.name }}</p>
-        <p>email : {{ user.email }}</p>
-        <hr />
+    <div v-if="!currentUser">
+        <h1>Loading</h1>
     </div>
-    <form @submit.prevent="submitData">
-        <label htmlFor="name">Name</label><br>
-        <input type="text" v-model="usersData.userInput.name" /><br><br>
-        <!-- {{ usersData.userInput.name }} -->
-        <label htmlFor="email">email</label><br>
-        <input type="text" v-model="usersData.userInput.email" /><br><br>
-        <!-- {{ usersData.userInput.email }} -->
+    <div v-else>
+        <h1>
+            Halo {{ currentUser.name }} ({{ currentUser.email }} 👍)
+        </h1>
 
-        <input type="submit">
-
-    </form>
-
+    </div>
 </template>
 
+
 <script setup>
-import { useUserStore } from '@/stores/UserStore';
+import { useAuthStore } from '@/stores/AuthStore';
+import { storeToRefs } from 'pinia';
 
-const usersData = useUserStore()
-const submitData = () => {
-    usersData.tambahUser()
-}
+
+const auth = useAuthStore();
+const { currentUser } = storeToRefs(auth)
+
 </script>
-
-<style scoped>
-input {
-    border: 1px solid black;
-}
-</style>

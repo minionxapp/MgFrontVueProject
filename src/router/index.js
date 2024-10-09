@@ -15,10 +15,17 @@ import Register from '@/views/public/RegisterView.vue'
 
 // errors
 import NotFound from '@/views/errors/NotFoundView.vue'
-const login = true
+import { auth } from '@/config/firebase'
+
+// import {  } from '../stores/AuthStore'
+
+// const login = true
 
 const requiredAuth = (to, from, next) => {
-  if (!login) {
+  const userAuthed = auth.currentUser
+  // console.log('################# currentUser' + JSON.stringify(auth.currentUser))
+  console.log('***************** userAuthed' + JSON.stringify(userAuthed))
+  if (!userAuthed) {
     alert('Login dulu Bang......')
     next({
       name: 'Login'
@@ -38,8 +45,12 @@ const router = createRouter({
       beforeEnter: requiredAuth,
       children: [
         {
-          path: '', //hilangkan / nya
-          name: 'Home',
+          path: '',
+          redirect: { name: 'Dashboard' }
+        },
+        {
+          path: './', //hilangkan / nya
+          name: 'Dashboard', //'Home',
           component: DasboardView
         },
         {
