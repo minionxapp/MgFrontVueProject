@@ -23,9 +23,11 @@ export const useAuthStore = defineStore('Auth', () => {
     password: ''
   })
 
+  //error validasi
+  const isError = ref(false)
+  const message = ref(null)
+
   const userHandler = () => {
-    console.log('===============userHandler===================')
-    console.log(JSON.stringify(user))
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         console.log('Disini********')
@@ -41,36 +43,36 @@ export const useAuthStore = defineStore('Auth', () => {
         currentUser.value.name = queryUser.name
         currentUser.value.isadmin = queryUser.isadmin
       } else {
-        console.log('kosong==========================')
         currentUser.value = null
       }
     })
   }
 
   const authUser = async (isLogin = false) => {
-    if (isLogin) {
-      await signInWithEmailAndPassword(auth, user.email, user.password)
-      console.log(
-        'islogin ^^^^^^^^^^^^^^ ' +
-          JSON.stringify(user) +
-          ' email ' +
-          user.email +
-          ' password ' +
-          user.password
-      )
-      console.log(' --%%%- ' + JSON.stringify(auth))
-    } else {
-      const data = await createUserWithEmailAndPassword(auth, user.email, user.password)
-      await addDoc(userCollection, {
-        name: user.name,
-        isadmin: false,
-        uid: data.user.uid
-      })
-      alert('Register berhasil')
-      // router.push({ name: 'Home' })
+    isError.value = false
+    message.value = null
+    try {
+      if (isLogin) {
+        await signInWithEmailAndPassword(auth, user.email, user.password)
+      } else {
+        const data = await createUserWithEmailAndPassword(auth, user.email, user.password)
+        await addDoc(userCollection, {
+          name: user.name,
+          isadmin: false,
+          uid: data.user.uid
+        })
+      }
+    } catch (error) {
+      isError.value = true
+      message.value = error.message
     }
-    // alert('masuk dashboard' + JSON.stringify(auth.currentUser))
-    router.push({ name: 'Dashboard' })
+
+    user.email = ''
+    user.name = ''
+    user.password = ''
+    if (!isError.value) {
+      router.push({ name: 'Dashboard' })
+    }
 
     // console.log(register)
   }
@@ -90,6 +92,8 @@ export const useAuthStore = defineStore('Auth', () => {
     authUser,
     userHandler,
     currentUser,
-    logoutUser
+    logoutUser,
+    isError,
+    message
   }
 })

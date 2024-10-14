@@ -6,6 +6,7 @@
 
         <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
             <v-form v-model="formInput" @submit.prevent="isLogin ? authUser(true) : authUser()">
+                <v-alert v-if="isError" type="error" title="Error" :text="message" variant="tonal"></v-alert>
                 <div v-if="!isLogin">
                     <div class="text-subtitle-1 text-medium-emphasis">Name</div>
 
@@ -54,7 +55,7 @@ import { storeToRefs } from 'pinia'
 //store
 const authStore = useAuthStore()
 //state
-const { formInput, user } = storeToRefs(authStore)
+const { formInput, user, isError, message } = storeToRefs(authStore)
 
 //action
 const { authUser } = authStore
