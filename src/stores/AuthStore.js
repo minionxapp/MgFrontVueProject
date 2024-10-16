@@ -11,7 +11,6 @@ import { addDoc, collection, query, where, getDocs } from 'firebase/firestore'
 import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('Auth', () => {
-  console.log('===============jalankan ini useAuthStore===================')
   const formInput = ref(false)
   const router = useRouter()
   const currentUser = ref(null)
@@ -30,13 +29,10 @@ export const useAuthStore = defineStore('Auth', () => {
   const userHandler = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log('Disini********')
-        console.log(JSON.stringify(user))
         const queryId = query(userCollection, where('uid', '==', user.uid))
         const queryData = await getDocs(queryId)
         const queryUser = queryData.docs[0].data()
 
-        console.log(queryData)
         currentUser.value = {}
         currentUser.value.email = user.email
         currentUser.value.id = user.uid

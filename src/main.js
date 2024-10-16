@@ -30,8 +30,3 @@ onAuthStateChanged(auth, () => {
   app.use(vuetify)
   app.mount('#app')
 })
-
-// Components
-// import App from './App.vue'
-
-// createApp(App).use(vuetify).mount('#app')

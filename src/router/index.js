@@ -5,6 +5,11 @@ import ProfileView from '@/views/ProfileView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import DetailCategory from '@/views/DetailCategory.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
+
+// News
+import CreateNewsView from '@/views/news/CreateNewsView.vue'
+import DetailNewsView from '@/views/news/DetailNewsView.vue'
+import UpdateNewsView from '@/views/news/UpdateNewsView.vue'
 // public
 import PublicLayout from '@/layouts/PublicLayout.vue'
 import LandingPage from '@/views/LandingPageView.vue'
@@ -23,10 +28,8 @@ import { auth } from '@/config/firebase'
 
 const requiredAuth = (to, from, next) => {
   const userAuthed = auth.currentUser
-  // console.log('################# currentUser' + JSON.stringify(auth.currentUser))
-  console.log('***************** userAuthed' + JSON.stringify(userAuthed))
   if (!userAuthed) {
-    alert('Login dulu Bang......')
+    alert('Anda Belum Login .....!!!')
     next({
       name: 'Login'
     })
@@ -57,6 +60,21 @@ const router = createRouter({
           path: 'news',
           name: 'News',
           component: NewsView
+        },
+        {
+          path: 'news/create',
+          name: 'CreateNews',
+          component: CreateNewsView
+        },
+        {
+          path: 'news/:id',
+          name: 'DetailNews',
+          component: DetailNewsView
+        },
+        {
+          path: 'news/:id/edit',
+          name: 'UpdateNews',
+          component: UpdateNewsView
         },
         {
           path: 'profile',

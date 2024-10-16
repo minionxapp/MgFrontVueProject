@@ -43,7 +43,7 @@ export const useCategoryStore = defineStore('Category', () => {
   const readCategory = async () => {
     const res = await getDocs(CategoryCollection)
     categories.value = res.docs.map((doc) => {
-      console.log(doc.id, ' => ', doc.data())
+      // console.log(doc.id, ' => ', doc.data())
       return { ...doc.data(), id: doc.id }
     })
   }
