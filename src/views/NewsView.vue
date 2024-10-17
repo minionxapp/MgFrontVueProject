@@ -24,6 +24,7 @@
                 <v-card-actions>
                     <v-btn color="orange" @click="detail(data.id)">Deatil</v-btn>
                     <v-btn color="blue" @click="update(data.id)">Update</v-btn>
+                    <v-btn color="error" @click="deleteData(data.id)">Delete</v-btn>
 
                 </v-card-actions>
             </v-card>
@@ -47,7 +48,7 @@ const newsStores = useNewsStore()
 const { newsData } = storeToRefs(newsStores)
 
 //action
-const { allNews, clearHandling } = newsStores
+const { allNews, clearHandling, deleteHandling } = newsStores
 
 const detail = (id) => {
     router.push({ name: 'DetailNews', params: { id: id } })
@@ -59,6 +60,10 @@ const update = (id) => {
 const addNews = () => {
     router.push({ name: 'CreateNews' })
     clearHandling()
+}
+
+const deleteData = (id) => {
+    deleteHandling(id)
 }
 onMounted(() => {
     allNews()
