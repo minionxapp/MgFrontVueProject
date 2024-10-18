@@ -51,7 +51,7 @@ export const useNewsStore = defineStore('News', () => {
           name: news.category.name
         },
         isApprove: false,
-        image: null,
+        Image: null,
         writtenBy: {
           id: AuthStore.currentUser.id,
           name: AuthStore.currentUser.name,

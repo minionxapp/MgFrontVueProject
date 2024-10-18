@@ -1,6 +1,7 @@
 <template>
     <v-card class="mx-auto">
-        <v-img class="align-end text-white" height="200" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg" cover>
+        <v-img class="align-end text-white" height="50%"
+            :src="data.Image ? data.Image : `https://cdn.vuetifyjs.com/images/cards/docks.jpg`" cover>
             <v-card-title>{{ data.title }}</v-card-title>
         </v-img>
 
@@ -91,7 +92,7 @@ const handlingUploadFile = async (data) => {
 
         const getLink = await getDownloadURL(uploadTask.ref)
         urlFile.value = getLink
-
+        console.log("================= " + urlFile.value)
         try {
             //update dokumen new
             await updateDoc(doc(db, "news", route.params.id), {
