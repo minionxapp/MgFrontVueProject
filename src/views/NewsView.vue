@@ -6,9 +6,9 @@
         </v-btn>
     </div>
     <v-row justify="center">
-        <v-col v-for="data in newsData" :key="data.id" cols="4" sm-2>
+        <v-col v-for="data in newsData" :key="data.id" cols="12" md="4" sm-2>
             <v-card>
-                <v-img class="align-end text-white" height="300"
+                <v-img class="align-end text-white" height="300" contain aspect-ratio="16/9"
                     :src="data.Image ? data.Image : `https://cdn.vuetifyjs.com/images/cards/docks.jpg`" cover>
                     <v-card-title>{{ data.title.substring(0, 50) }}</v-card-title>
                 </v-img>
