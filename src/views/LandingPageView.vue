@@ -19,8 +19,8 @@
                 </v-card-text>
 
                 <v-card-actions>
-                    <v-btn color="info" varian="elevated" type="button" text="Share">Read More</v-btn>
-
+                    <v-btn color="info" varian="elevated" type="button" text="Share" @click="detailNews(data.id)">Read
+                        More</v-btn>
                     <v-btn color="orange" text="Explore"></v-btn>
                 </v-card-actions>
             </v-card>
@@ -32,12 +32,16 @@
 import { useNewsStore } from '@/stores/NewsStores';
 import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 //store
 const newsStore = useNewsStore()
-
+const router = useRouter()
 //aksi
 const { allNews } = newsStore
+const detailNews = (id) => {
+    router.push({ name: 'DetailPublicNews', params: { id: id } })
+}
 
 // state
 const { newsData } = storeToRefs(newsStore)

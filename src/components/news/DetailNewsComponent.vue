@@ -18,7 +18,7 @@
         </v-card-text>
 
         <!-- file Upload -->
-        <v-card-text>
+        <v-card-text v-if="isUpdate">
             <v-form style="width: 300px;" @submit.prevent="handlingUploadFile(data)">
                 <div>
                     <p style="color: red;">{{ fileError }}</p>
@@ -41,8 +41,7 @@
 
 
 <script setup>
-import { defineProps } from 'vue';
-import { ref } from 'vue';
+import { defineProps, ref } from 'vue';
 import { db, projectStorage } from '@/config/firebase';
 import { ref as refFile, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { doc, updateDoc } from 'firebase/firestore';

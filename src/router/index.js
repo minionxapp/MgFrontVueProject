@@ -10,6 +10,8 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import CreateNewsView from '@/views/news/CreateNewsView.vue'
 import DetailNewsView from '@/views/news/DetailNewsView.vue'
 import UpdateNewsView from '@/views/news/UpdateNewsView.vue'
+import DetailNewsPublic from '@/views/public/news/DetailNewsPublic.vue'
+
 // public
 import PublicLayout from '@/layouts/PublicLayout.vue'
 import LandingPage from '@/views/LandingPageView.vue'
@@ -101,8 +103,13 @@ const router = createRouter({
       children: [
         {
           path: '/',
-          name: 'LandingPage',
+          name: 'Home',
           component: LandingPage
+        },
+        {
+          path: '/news/:id',
+          name: 'DetailPublicNews',
+          component: DetailNewsPublic
         },
         {
           path: '/categoryPublic',
