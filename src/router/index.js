@@ -15,6 +15,7 @@ import DetailNewsPublic from '@/views/public/news/DetailNewsPublic.vue'
 // public
 import PublicLayout from '@/layouts/PublicLayout.vue'
 import LandingPage from '@/views/LandingPageView.vue'
+import categoryByIdView from '@/views/public/category/categoryByIdView.vue'
 
 import Category from '@/views/public/CategoryView.vue'
 import Login from '@/views/public/LoginView.vue'
@@ -112,9 +113,14 @@ const router = createRouter({
           component: DetailNewsPublic
         },
         {
-          path: '/categoryPublic',
+          path: '/category',
           name: 'CategoryPublic',
           component: Category
+        },
+        {
+          path: 'category/:id',
+          name: 'CategoryById',
+          component: categoryByIdView
         },
         {
           path: '/register',

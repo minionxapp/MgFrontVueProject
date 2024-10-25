@@ -7,7 +7,8 @@
                 <h2 class="text-h5 mb-6">{{ data.name }}</h2>
                 <p class="mb-4 text-body-2">
                     {{ data.description.substring(0, 30) }}...<br>
-                    <a href="" class="text-decoration-none text-info">Read More</a>
+                    <RouterLink :to="{ name: 'CategoryById', params: { id: data.id } }"
+                        class="text-decoration-none text-info">Read More</RouterLink>
                 </p>
             </v-sheet>
         </v-col>
@@ -19,6 +20,7 @@
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useCategoryStore } from '@/stores/CategoryStore';
+import { RouterLink } from 'vue-router';
 
 //register
 const categoryStore = useCategoryStore()
