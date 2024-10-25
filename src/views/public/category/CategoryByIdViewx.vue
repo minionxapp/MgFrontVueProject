@@ -1,4 +1,5 @@
 <template>
+    <h1>disini</h1>
     <div v-if="newsData">
         <h1>List Berita Category {{ newsData[0].category.name }} </h1>
         <v-card class="mb-7" v-for="data in newsData" :key="data.id">

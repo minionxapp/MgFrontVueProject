@@ -15,7 +15,7 @@ import DetailNewsPublic from '@/views/public/news/DetailNewsPublic.vue'
 // public
 import PublicLayout from '@/layouts/PublicLayout.vue'
 import LandingPage from '@/views/LandingPageView.vue'
-import categoryByIdView from '@/views/public/category/categoryByIdView.vue'
+import categoryByIdView from '@/views/public/category/CategoryByIdViewx.vue'
 
 import Category from '@/views/public/CategoryView.vue'
 import Login from '@/views/public/LoginView.vue'
