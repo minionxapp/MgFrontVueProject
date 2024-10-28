@@ -25,8 +25,6 @@
     <div v-else>
         <h1>Tidak ada berita di kategori ini</h1>
     </div>
-
-
 </template>
 
 <script setup>
@@ -55,7 +53,6 @@ const readData = async () => {
         return { ...doc.data(), id: doc.id }
     })
 
-    console.log(querySnapshot)
 }
 
 onMounted(() => {

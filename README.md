@@ -41,3 +41,5 @@ npm run lint
 ```
 
 firebase pake mugihnf
+
+https://app.netlify.com/teams/minionxapp/sites
