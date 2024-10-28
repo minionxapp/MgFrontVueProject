@@ -1,7 +1,6 @@
 <template>
     <div v-if="newsData">
-        <h1>disini</h1>
-        <h1>List Berita Category {{ newsData[0].category.name }} </h1>
+        <h1>List Berita Category {{ newsData[0].category.name }}</h1>
         <v-card class="mb-7" v-for="data in newsData" :key="data.id">
             <v-img class="align-end text-white" height="200"
                 :src="data.Image ? data.Image : `https://cdn.vuetifyjs.com/images/cards/docks.jpg`" cover>
@@ -49,11 +48,16 @@ const detailNews = (paramId) => {
 const readData = async () => {
     const q = query(collection(db, 'news'), where('category.id', '==', route.params.id))
     const querySnapshot = await getDocs(q)
+
     newsData.value = querySnapshot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id }
     })
-
+    // cek jika nilai tidak ada
+    if (newsData.value == '') {
+        newsData.value = null
+    }
 }
+
 
 onMounted(() => {
     readData()
