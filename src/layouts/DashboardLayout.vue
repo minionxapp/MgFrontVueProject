@@ -27,7 +27,7 @@ const drawer = ref(false)
 // const showError = ref(false)
 // const showMotivation = ref(false)
 
-// provide('username', 'MugiartoXXXX') //nggak dipake lagi ambil dari pinia
+// provide('username', 'MugiartoXXXX') //nggak dipake lagi ambil dari
 
 const drawerOpenClose = () => {
     drawer.value = !drawer.value

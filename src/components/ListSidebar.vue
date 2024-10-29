@@ -1,6 +1,7 @@
 <template>
     <v-list density="compact">
-        <v-list-subheader class="my-5 text-h5 text-uppercase">{{ currentUser.name }}</v-list-subheader>
+        <v-list-subheader v-if="currentUser" class="my-5 text-h5 text-uppercase">{{ currentUser.name
+            }}</v-list-subheader>
 
         <v-list-item v-for="(item, i) in items" :key="i" :value="item" :to="{ name: `${item.pathName}` }"
             color="primary">
@@ -21,6 +22,9 @@ import { storeToRefs } from 'pinia';
 // ambil user yang login
 const auth = useAuthStore();
 const { currentUser } = storeToRefs(auth)
+// onMounted(() => {
+
+// }),
 
 defineProps({
     items: {
