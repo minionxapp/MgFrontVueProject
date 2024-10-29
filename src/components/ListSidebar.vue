@@ -1,6 +1,6 @@
 <template>
     <v-list density="compact">
-        <v-list-subheader class="my-5 text-h5 text-uppercase">{{ username }}</v-list-subheader>
+        <v-list-subheader class="my-5 text-h5 text-uppercase">{{ currentUser.name }}</v-list-subheader>
 
         <v-list-item v-for="(item, i) in items" :key="i" :value="item" :to="{ name: `${item.pathName}` }"
             color="primary">
@@ -14,7 +14,14 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+// import { inject } from 'vue';
+import { useAuthStore } from '@/stores/AuthStore';
+import { storeToRefs } from 'pinia';
+
+// ambil user yang login
+const auth = useAuthStore();
+const { currentUser } = storeToRefs(auth)
+
 defineProps({
     items: {
         type: Object,
@@ -22,5 +29,5 @@ defineProps({
     }
 })
 
-const username = inject('username')
+// const username = inject('username')
 </script>

@@ -18,7 +18,7 @@
 
 
 <script setup>
-import { ref, provide } from 'vue';
+import { ref } from 'vue';
 import NavBar from '../components/NavBar.vue';
 import SideBar from '../components/SideBar.vue';
 // imp ort AlertMessage from './components/AlertMessage.vue';
@@ -27,7 +27,7 @@ const drawer = ref(false)
 // const showError = ref(false)
 // const showMotivation = ref(false)
 
-provide('username', 'Mugiarto')
+// provide('username', 'MugiartoXXXX') //nggak dipake lagi ambil dari pinia
 
 const drawerOpenClose = () => {
     drawer.value = !drawer.value
